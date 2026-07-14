@@ -14,10 +14,10 @@ WIKI_DIR = PROJECT_DIR / "html"
 OUTPUT_DIR = PROJECT_DIR / "csv"
 
 TARGETS = [
-    ("ポケモンの外国語名一覧 - ポケモンWiki.html", "graytable", "foreign_names.csv"),
-    ("とくせいの外国語名一覧 - ポケモンWiki.html", "bluetable", "ability_foreign_names.csv"),
-    ("わざの外国語名一覧 - ポケモンWiki.html", "bluetable", "move_foreign_names.csv"),
-    ("アイテムの外国語名一覧 - ポケモンWiki.html", "graytable", "item_foreign_names.csv"),
+    ("ポケモンの外国語名一覧 - ポケモンWiki.html", "graytable", "name_langmap.csv"),
+    ("とくせいの外国語名一覧 - ポケモンWiki.html", "bluetable", "ability_langmap.csv"),
+    ("わざの外国語名一覧 - ポケモンWiki.html", "bluetable", "move_langmap.csv"),
+    ("アイテムの外国語名一覧 - ポケモンWiki.html", "graytable", "item_langmap.csv"),
 ]
 
 
