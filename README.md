@@ -31,4 +31,6 @@ python convert_html_to_csv.py
 
 ## ライセンス
 
-本リポジトリのスクリプトおよび生成されたCSVは [CC BY-NC-SA 4.0](LICENSE) の下で提供される。`html/`・`csv/` 配下のデータはポケモンWikiのコンテンツに由来し、引用元サイトの利用条件にも従うことに注意。
+本リポジトリのスクリプト（`convert_html_to_csv.py` など）は [MIT License](LICENSE) の下で提供される。
+
+`html/`・`csv/` 配下のデータ（ポケモンWikiから抽出・生成したもの）は [CC BY-NC-SA 4.0](DATA_LICENSE) の下で提供され、引用元サイトの利用条件にも従うことに注意。
