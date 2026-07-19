@@ -13,6 +13,7 @@ PROJECT_DIR = Path(__file__).parent
 WIKI_DIR = PROJECT_DIR / "html"
 OUTPUT_DIR = PROJECT_DIR / "csv"
 
+# TODO: アイテムの変換テーブルに "きのみの外国語名一覧 - ポケモンWiki.html" も追加する
 TARGETS = [
     ("ポケモンの外国語名一覧 - ポケモンWiki.html", "graytable", "name_langmap.csv"),
     ("とくせいの外国語名一覧 - ポケモンWiki.html", "bluetable", "ability_langmap.csv"),
