@@ -13,29 +13,36 @@ PROJECT_DIR = Path(__file__).parent
 WIKI_DIR = PROJECT_DIR / "html"
 OUTPUT_DIR = PROJECT_DIR / "csv"
 
-# TODO: アイテムの変換テーブルに "きのみの外国語名一覧 - ポケモンWiki.html" も追加する
 TARGETS = [
-    ("ポケモンの外国語名一覧 - ポケモンWiki.html", "graytable", "name_langmap.csv"),
-    ("とくせいの外国語名一覧 - ポケモンWiki.html", "bluetable", "ability_langmap.csv"),
-    ("わざの外国語名一覧 - ポケモンWiki.html", "bluetable", "move_langmap.csv"),
-    ("アイテムの外国語名一覧 - ポケモンWiki.html", "graytable", "item_langmap.csv"),
+    (["ポケモンの外国語名一覧 - ポケモンWiki.html"], "graytable", "name_langmap.csv"),
+    (["とくせいの外国語名一覧 - ポケモンWiki.html"], "bluetable", "ability_langmap.csv"),
+    (["わざの外国語名一覧 - ポケモンWiki.html"], "bluetable", "move_langmap.csv"),
+    (
+        [
+            "アイテムの外国語名一覧 - ポケモンWiki.html",
+            "きのみの外国語名一覧 - ポケモンWiki.html",
+        ],
+        "graytable",
+        "item_langmap.csv",
+    ),
 ]
 
 
-def extract_rows(html_path: Path, table_class: str) -> list[list[str]]:
-    soup = BeautifulSoup(html_path.read_text(encoding="utf-8"), "html.parser")
-
+def extract_rows(html_paths: list[Path], table_class: str) -> list[list[str]]:
     rows: list[list[str]] = []
     header: list[str] | None = None
-    for table in soup.find_all("table", class_=table_class):
-        for i, tr in enumerate(table.find_all("tr")):
-            cells = [c.get_text(strip=True) for c in tr.find_all(["th", "td"])]
-            if i == 0:
-                if header is None:
-                    header = cells
-                    rows.append(header)
-                continue
-            rows.append(cells)
+    for html_path in html_paths:
+        soup = BeautifulSoup(html_path.read_text(encoding="utf-8"), "html.parser")
+
+        for table in soup.find_all("table", class_=table_class):
+            for i, tr in enumerate(table.find_all("tr")):
+                cells = [c.get_text(strip=True) for c in tr.find_all(["th", "td"])]
+                if i == 0:
+                    if header is None:
+                        header = cells
+                        rows.append(header)
+                    continue
+                rows.append(cells)
 
     return rows
 
@@ -43,11 +50,11 @@ def extract_rows(html_path: Path, table_class: str) -> list[list[str]]:
 def main():
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    for html_name, table_class, csv_name in TARGETS:
-        html_path = WIKI_DIR / html_name
+    for html_names, table_class, csv_name in TARGETS:
+        html_paths = [WIKI_DIR / name for name in html_names]
         csv_path = OUTPUT_DIR / csv_name
 
-        rows = extract_rows(html_path, table_class)
+        rows = extract_rows(html_paths, table_class)
 
         with csv_path.open("w", encoding="utf-8-sig", newline="") as f:
             writer = csv.writer(f)

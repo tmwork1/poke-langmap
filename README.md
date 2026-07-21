@@ -9,7 +9,7 @@
 | `csv/foreign_names.csv` | ポケモン名 | 1,028件 |
 | `csv/ability_foreign_names.csv` | とくせい名 | 306件 |
 | `csv/move_foreign_names.csv` | わざ名 | 935件 |
-| `csv/item_foreign_names.csv` | アイテム名 | 880件 |
+| `csv/item_foreign_names.csv` | アイテム名（きのみ含む） | 958件 |
 
 各CSVは日本語・英語・フランス語・ドイツ語・イタリア語・スペイン語・韓国語・中国語(簡体/繁体)の列を持つ（列構成は元ページの表に準拠するため、ファイルによって多少異なる）。
 
